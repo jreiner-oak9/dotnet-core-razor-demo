@@ -1,0 +1,40 @@
+﻿@model Razor.Library.Models.EmailSummary
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Page1</title>
+</head>
+<body>
+    <h1>Hello, @Model.RecipientName</h1>
+    <h2>Here is your summary for @Model.TenantName</h2>
+    <hr />
+    <br />
+    <ul>
+    @foreach (var project in Model.Projects)
+    {
+        <li>
+            <h3>@project.Name</h3>
+            <hr />
+            Compliance Frameworks:
+            <ul>
+                @foreach (var cf in project.ComplianceFrameworks)
+                {
+                    <li>@cf.Name (@cf.IsInCompliance) </li>
+                }
+            </ul>
+            <hr />
+            Design Gaps:
+            <ul>
+                <li>@project.DesignGapSummary.Critical</li>
+                <li>@project.DesignGapSummary.High</li>
+                <li>@project.DesignGapSummary.Medium</li>
+                <li>@project.DesignGapSummary.Low</li>
+            </ul>
+        </li>
+    }
+    </ul>
+</body>
+</html>
