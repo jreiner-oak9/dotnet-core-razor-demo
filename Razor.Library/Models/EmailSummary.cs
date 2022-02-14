@@ -8,6 +8,57 @@ namespace Razor.Library.Models
         public string RecipientName { get; set; }
         public string TenantName { get; set; }
         public List<Project> Projects { get; set; }
+
+        public static EmailSummary GetMockData()
+        {
+            return new EmailSummary
+            {
+                RecipientName = "John",
+                TenantName = "Acorn Calculator",
+                Projects = new List<Project>()
+                {
+                    new Project()
+                    {
+                        Name = "Hello World",
+                        ComplianceFrameworks = new List<ComplianceFramework>()
+                        {
+                            new ComplianceFramework()
+                            {
+                                Name = "HITRUST",
+                                IsInCompliance = false
+                            },
+                            new ComplianceFramework()
+                            {
+                                Name = "NIST",
+                                IsInCompliance = true
+                            }
+                        },
+                        DesignGapSummary = new DesignGapSummary()
+                        {
+                            Critical = 1
+                        }
+                    },
+                    new Project()
+                    {
+                        Name = "Part Two",
+                        ComplianceFrameworks = new List<ComplianceFramework>()
+                        {
+                            new ComplianceFramework()
+                            {
+                                Name = "PCI DSS",
+                                IsInCompliance = false
+                            },
+                        },
+                        DesignGapSummary = new DesignGapSummary()
+                        {
+                            High = 1,
+                            Medium = 4,
+                            Low = 3
+                        }
+                    }
+                }
+            };
+        }
     }
 
     public class Project
